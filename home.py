@@ -10,13 +10,9 @@ from PIL import Image
 
 app = Flask(__name__)
 path = os.getcwd()
-# print(path)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
-# app.config['INITIAL_FILE_UPLOADS'] = 'C:\\Users\\msidd\\OneDrive\\Desktop\\PAN card project\\project\\static\\uploads'
 app.config['INITIAL_FILE_UPLOADS'] = os.path.join(path, 'static\\uploads')
-# app.config['EXISTNG_FILE'] = 'C:\\Users\\msidd\\OneDrive\\Desktop\\PAN card project\\project\\static\\original'
 app.config['EXISTNG_FILE'] = os.path.join(path, 'static\\original')
-# app.config['GENERATED_FILE'] = 'C:\\Users\\msidd\\OneDrive\\Desktop\\PAN card project\\project\\static\\generated'
 app.config['GENERATED_FILE'] = os.path.join(path, 'static\\generated')
 
 
@@ -119,4 +115,4 @@ def results():
         return redirect(url_for("redirect2"))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False, host ='0.0.0.0')
