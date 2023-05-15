@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Faulty Pan detector-upload pan</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    document.onload = function(){
+        document.getElementById('file_upload').value = '';
+    }
+  </script>
+  <style>
+    html {
+      height: 100%;
+      width: 100%;
+    }
+
+    body {
+      font-family: sans-serif;
+      background-image: url(/static/uploading_pg_pan.jpg);
+      background-size: cover;
+      background-color: #fff;
+      color: #333;
+      line-height: 1.5;
+      padding-bottom: 20px;
+      height: 100%;
+      width: 100%;
+    }
+
+
+    .container {
+      padding: 20px;
+      margin: 0 auto;
+      width: 40%;
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(12.5px);
+      -webkit-backdrop-filter: blur(12.5px);
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      height: 55%;
+      margin-top: 9%;
+    }
+
+    .container img {
+      width: 80%;
+      margin-top: 2vh;
+      margin-bottom: 1vh;
+      height: auto;
+      object-fit: contain;
+      /* display: none; */
+    }
+
+
+
+    .file-input {
+      display: inline-block;
+      /* margin-bottom: 10px; */
+      /* background-color: #fff; */
+    }
+
+
+    input::file-selector-button {
+      font-weight: bold;
+      color: rgb(228, 231, 234);
+      padding: 0.5em;
+      background-color: rgb(59, 130, 246);
+      border: thin solid grey;
+      border-radius: 3px;
+    }
+
+    .upload-button,
+    .delete-button {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 4px;
+      background-color: #007bff;
+      color: #fff;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .upload-button:hover,
+    .delete-button:hover {
+      background-color: #0056b3;
+    }
+
+    .delete-button {
+      margin-left: 10px;
+      background-color: #f44336;
+    }
+
+    .file-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .file-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .preview-image {
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      /* margin-right: 10px; */
+      margin-bottom: 10px;
+      /* border-radius: 4px; */
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+
+    }
+
+    .m0 {
+      margin: 0;
+    }
+
+    .p5 {
+      padding: 11px;
+    }
+
+    header {
+      /* linear gradient; */
+      padding: 1vh;
+      font-size: large;
+      background: linear-gradient(90deg, rgb(203, 101, 18) 0%, rgb(203, 101, 18) 0%, rgb(255, 255, 255) 35%, rgb(11, 148, 54) 100%);
+    }
+
+    .tac {
+      text-align: center;
+    }
+
+    .white_text {
+      color: rgb(69, 69, 69);
+    }
+
+    .card-group {
+      margin: 20px;
+    }
+
+    .works {
+      margin: 20px;
+      font-size: 30px;
+      font-weight: 600;
+    }
+
+    main {
+      margin-bottom: 5vh;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+    #error h2{
+      color: #f44336;
+    }
+
+    @media only screen and (max-width: 600px) {
+
+      .container {
+        /* padding: 20px; */
+        margin: 4vw;
+        width: 80%;
+        background: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(12.5px);
+        -webkit-backdrop-filter: blur(12.5px);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        height: 55%;
+        margin-top: 9%;
+      }
+
+    }
+  </style>
+  <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById('file-input').value = '';
+    });
+  </script>
+  
+
+</head>
+
+<body class="tac">
+  <header class="tac">
+
+    <!-- As a heading -->
+    <nav class="tac">
+      <div class=" m0 p5 tac">
+        <h1 class="p5 white_text">FAULTY PAN CARD DETECTOR</h1>
+      </div>
+    </nav>
+
+  </header>
+
+
+  <div class="container">
+    <form action="{{ url_for('redirect2') }}" method="POST" class="col s12" enctype="multipart/form-data" id ="file_uploadf">
+      <h2>UPLOAD THE PAN CARD BELOW</h2>
+      <input type="file" class="file-input" id="file_upload" name="file_upload">
+      <br>
+      <div id="preview_img">
+        <img src="/static/original/PAN-Sample.jpg" alt="">
+      </div>
+      <input type="submit" value="Upload" class="upload-button" id="upload_button" name="submit">
+      <button type="button" class="delete-button" id="delete_button" onclick="">Delete Image</button>
+    </form>
+    <ul class="file-list"></ul>
+    <p class="error">
+     <h2> {% if error %}
+      {{ error }}
+      {% endif %}
+    </h2>
+    </p>
+    
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+    <script>
+      // Function to handle file preview and delete button
+      function handleFiles(files) {
+        if (files.length == 0) {
+          document.getElementById('upload_button').disabled = true;
+
+        }
+        const fileList = document.querySelector('.file-list');
+
+        // Clear existing files
+        fileList.innerHTML = '';
+
+        // Iterate through selected files
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+
+          // Create list item for each file
+          const listItem = document.createElement('li');
+          listItem.className = 'file-item';
+
+          // Create image preview element
+          const image = document.createElement('img');
+          image.className = 'preview-image';
+          image.src = URL.createObjectURL(file);
+          image.alt = file.name;
+
+          // Create delete button
+          const deleteButton = document.getElementById('delete_button');
+          //   deleteButton.innerText = 'Delete';
+          //   deleteButton.className = 'delete-button';
+          deleteButton.addEventListener('click', function () {
+            document.getElementById('preview_img').innerHTML = "<img src='/static/original/PAN-Sample.jpg' alt=''>";
+            document.getElementById('file_upload').value = "";
+          });
+
+          // Append image and delete button to list item
+          //   listItem.appendChild(image);
+          document.getElementById('preview_img').innerHTML = '<img src="' + image.src + '" alt="' + image.alt + '" id="preview-image">';
+          //   listItem.appendChild(deleteButton);
+
+          // Append list item to file list
+          fileList.appendChild(listItem);
+          // if no file uploaded do not submit
+
+        }
+      }
+
+      // Event listener for file input change
+      const fileInput = document.getElementById('file_upload');
+      fileInput.addEventListener('change', function () {
+        handleFiles(this.files);
+      });
+      
+      document.onload = function(){
+        document.getElementById('file_upload').value = '';
+        handleFiles(this.files);
+    }
+      
+    </script>
+
+</body>
+
+</html>

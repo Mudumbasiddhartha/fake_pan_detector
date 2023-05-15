@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .m0 {
+            margin: 0;
+        }
+
+        .p5 {
+            padding: 11px;
+        }
+
+        header {
+            /* linear gradient; */
+            padding: 1vh;
+            font-size: large;
+            background: linear-gradient(90deg, rgb(203, 101, 18) 0%, rgb(203, 101, 18) 0%, rgb(255, 255, 255) 35%, rgb(11, 148, 54) 100%);
+        }
+
+        .tac {
+            text-align: center;
+        }
+
+        .white_text {
+            color: rgb(69, 69, 69);
+        }
+
+        main {
+            margin-top: 6vh;
+            justify-content: center;
+            align-items: center;
+        }
+        body{
+            justify-content: center;
+            background-color: beige;
+            align-items: center;
+            text-align: center;
+        
+        }
+        .center_parent{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .content {
+            margin: 20px;
+            font-size: 30px;
+            font-weight: 600;
+            /* background-color: red; */
+            width: 60%;
+            justify-content: center;
+            align-items: center;
+            /* margin-left: 25%; */
+        }
+    </style>
+    <title>Results</title>
+</head>
+
+<body>
+    <header class="tac">
+
+        <!-- As a heading -->
+        <nav class="tac">
+            <div class=" m0 p5 tac">
+                <h1 class="p5 white_text">FAULTY PAN CARD DETECTOR</h1>
+            </div>
+        </nav>
+
+    </header>
+
+    <h2 style="margin-top: 8vh;"> Below are the results for the uploaded PAN card</h2>
+    <main class="tac center_parent">
+
+        <div class="content">
+           <p>
+            <!-- displaying the results -->
+           
+            {{ pred | safe }}
+            
+            
+
+           </p>
+        </div>
+    </main>
+</body>
+
+</html>
