@@ -11,8 +11,8 @@ class Config(object):
     SECRET_KEY = 'sid'
 
     DB_NAME = "production-db"
-    DB_USERNAME = "root"
-    DB_PASSWORD = "sid"
+    DB_USERNAME = "USER ID"
+    DB_PASSWORD = "PW"
 
     UPLOADS = "/home/username/app/app/static/uploads"
 
@@ -38,8 +38,8 @@ class TestingConfig(Config):
     DEBUG = True
 
     DB_NAME = "production-db"
-    DB_USERNAME = "root"
-    DB_PASSWORD = "pianalytix"
+    DB_USERNAME = "PUT DB ID HERE"
+    DB_PASSWORD = "PASSWORD GOES HERE"
 
     UPLOADS = "/home/username/app/app/static/uploads"
     SESSION_COOKIE_SECURE = False
